@@ -53,7 +53,7 @@
 //!     }
 //! }
 //! ```
-use iced_core::{time::Instant, Element, Rectangle, Widget};
+use iced_core::{time::Instant, widget::Tree, Element, Rectangle, Widget};
 
 use crate::{Animate, Animated, Event};
 
@@ -117,6 +117,14 @@ where
 {
     fn size(&self) -> iced_core::Size<iced_core::Length> {
         self.content.as_widget().size()
+    }
+
+    fn size_hint(&self) -> iced_core::Size<iced_core::Length> {
+        self.content.as_widget().size_hint()
+    }
+
+    fn children(&self) -> Vec<iced_core::widget::Tree> {
+        vec![Tree::new(&self.content)]
     }
 
     fn diff(&self, tree: &mut iced_core::widget::Tree) {

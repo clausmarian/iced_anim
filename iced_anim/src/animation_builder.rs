@@ -284,6 +284,10 @@ where
         )
     }
 
+    fn children(&self) -> Vec<Tree> {
+        vec![Tree::new(&self.cached_element)]
+    }
+
     fn draw(
         &self,
         tree: &Tree,

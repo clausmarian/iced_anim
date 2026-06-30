@@ -52,12 +52,12 @@ where
     /// Creates a new [`Button`] with the given content.
     pub fn new(content: impl Into<Element<'a, Message, Theme, Renderer>>) -> Self {
         let content = content.into();
-
+        let size = content.as_widget().size_hint();
         Button {
             content,
             on_press: None,
-            width: Length::Fit,
-            height: Length::Fit,
+            width: size.width.fluid(),
+            height: size.height.fluid(),
             padding: DEFAULT_PADDING,
             clip: false,
             class: Theme::default(),
@@ -199,11 +199,15 @@ where
         tree::State::new(state)
     }
 
-    fn diff(&mut self, tree: &mut Tree) {
+    fn children(&self) -> Vec<Tree> {
+        vec![Tree::new(&self.content)]
+    }
+
+    fn diff(&self, tree: &mut Tree) {
         // If the style changes from outside, then immediately update the style.
         let state = tree.state.downcast_mut::<State>();
         state.animated_state.diff(self.mode);
-        tree.diff_children(std::slice::from_mut(&mut self.content));
+        tree.diff_children(std::slice::from_ref(&self.content));
     }
 
     fn size(&self) -> Size<Length> {
