@@ -3,6 +3,6 @@ resolver = "2"
 members = ["iced_anim", "iced_anim_derive", "examples"]
 
 [workspace.dependencies]
-iced = { git = "https://github.com/iced-rs/iced", branch = "vello_cpu" }
-iced_core = { git = "https://github.com/iced-rs/iced", branch = "vello_cpu" }
-iced_widget = { git = "https://github.com/iced-rs/iced", branch = "vello_cpu" }
+iced = { git = "https://github.com/clausmarian/iced", branch = "vello_cpu" }
+iced_core = { git = "https://github.com/clausmarian/iced", branch = "vello_cpu" }
+iced_widget = { git = "https://github.com/clausmarian/iced", branch = "vello_cpu" }
